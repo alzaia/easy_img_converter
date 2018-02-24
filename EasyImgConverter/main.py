@@ -12,7 +12,7 @@ def main():
 
     print 'EasyImgConverter v.{}'.format(EasyImgConverter.__version__)
 
-    ap = argparse.ArgumentParser(formatter_class=RawTextHelpFormatter)
+    ap = argparse.ArgumentParser()
 
     ap.add_argument("-t", "--type", required=True, choices=['png','jpg','tif'], help="Type of image format. ")
     ap.add_argument("-i", "--imgpath", required=True,nargs='+', help="Path of the image to convert. ")
@@ -48,13 +48,13 @@ def convert_img(path_img,target_format):
     only_name, only_extension = os.path.splitext(file_name)
 
     if (target_format == 'png'):
-        imageio.imwrite(only_name + '.png')
+        imageio.imwrite(os.path.join(tmp_path,only_name + '.png'),img)
 
     if (target_format == 'tif'):
-        imageio.imwrite(only_name + '.tif')
+        imageio.imwrite(os.path.join(tmp_path,only_name + '.tif'),img)
 
     if (target_format == 'jpg'):
-        imageio.imwrite(only_name + '.jpg')
+        imageio.imwrite(os.path.join(tmp_path,only_name + '.jpg'),img)
 
 
 
